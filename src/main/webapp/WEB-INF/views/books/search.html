@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+
+<form th:method="GET" th:action="@{/books/search}">
+    <label for="gsearch">Введите поисковой запрос: </label>
+    <input type="search" id="gsearch" name="gsearch">
+    <br>
+    <button type="submit">Искать</button>
+</form>
+<hr>
+
+<div th:if="${nothing}"></div>
+
+<div th:if="${nothingFound}">
+    Книг не найдено!
+</div>
+
+<div th:if="${book}">
+    <p th:text="${book.getName()+ ', '+ book.getAuthor()+', '+ book.getYear()}"></p>
+    <div th:if="${owner}"><p  th:text="'Книга сейчас у: '+ ${owner.getFIO()}"></p></div>
+    <div th:if="${free}">Книга свободна</div>
+    <hr>
+</div>
+
+</body>
+</html>
